@@ -33,5 +33,5 @@ def roman_to_int(roman_string):
                         sum += roman_ref[key]
                 elif roman_string[i] == key:
                     sum += roman_ref[key]
-            return sum
-        return 0
+        return sum
+    return 0
