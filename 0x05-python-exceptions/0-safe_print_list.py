@@ -1,14 +1,20 @@
 #!/usr/bin/python3
 def safe_print_list(my_list=[], x=0):
-    if not my_list or x == 0:
-        print()
-        return (0)
-    try:
-        for idx in range(x):
-            print(my_list[idx], end="")
-    except:
-        # case when range(x) > len, the last idx = 1 more
-        idx = idx - 1
-    finally:
-        print()
-        return(idx + 1)
+    """Print x elememts of a list.
+
+    Args:
+        my_list (list): The list to print elements from.
+        x (int): The number of elements of my_list to print.
+
+    Returns:
+        The number of elements printed.
+    """
+    ret = 0
+    for i in range(x):
+        try:
+            print("{}".format(my_list[i]), end="")
+            ret += 1
+        except IndexError:
+            break
+    print("")
+    return (ret)
