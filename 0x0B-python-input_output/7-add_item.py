@@ -1,15 +1,23 @@
 #!/usr/bin/python3
-from os import path
+"Method Module"
+import json
 from sys import argv
-save_to_json_file = __import__('7-save_to_json_file').save_to_json_file
-load_from_json_file = __import__('8-load_from_json_file').load_from_json_file
 
-if path.exists('add_item.json'):
-    obj_json_file = load_from_json_file('add_item.json')
-else:
-    obj_json_file = []
+
+save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
+load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
+
+filename = "add_item.json"
+# Create the object or calling from json
+try:
+    f = open(filename, 'r')
+    obj = load_from_json_file(filename)
+except Exception:
+    obj = []
 
 for i in range(1, len(argv)):
-    obj_json_file.append(argv[i])
+    obj.append(argv[i])
 
-save_to_json_file(obj_json_file, 'add_item.json')
+# Create json file
+with open(filename, 'w') as f:
+    json.dump(obj, f)
